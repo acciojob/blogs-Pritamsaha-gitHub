@@ -1,5 +1,6 @@
 package com.driver.controller;
 
+import com.driver.DTOs.UserpasswordreqDto;
 import com.driver.models.User;
 import com.driver.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class UserController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Void> updateUser(@RequestBody User user) {
+    public ResponseEntity<Void> updateUser(@RequestBody UserpasswordreqDto user) {
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

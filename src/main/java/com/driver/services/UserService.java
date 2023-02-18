@@ -1,5 +1,6 @@
 package com.driver.services;
 
+import com.driver.DTOs.UserpasswordreqDto;
 import com.driver.models.*;
 import com.driver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +25,25 @@ public class UserService {
         userRepository3.deleteById(userId);
     }
 
-    public void updateUser(User user)
+    public void updateUser(UserpasswordreqDto user)
     {
-        userRepository3.save(user);
+        User user1=userRepository3.findById(user.getId()).get();
 
+        user1.setPassword(user.getNewpassword());
+        userRepository3.save(user1);
     }
 
-    public User findUserByUsername(String username)
+    public User findUserByUsername (String username)
     {
+//        User user= userRepository3.findByUsername(username);
+//        UserResponseDto userResponseDto=new UserResponseDto();
+//        userResponseDto.setFirstName(user.getFirstName());
+//        userResponseDto.setLastName(user.getLastName());
+//        userResponseDto.setUsername(user.getUsername());
+//        userResponseDto.setPassword(user.getPassword());
+//        List<Blog>currentList=user.getBlogList();
+//        userResponseDto.setBlogList(currentList);
+//        return userResponseDto;
         return userRepository3.findByUsername(username);
-
     }
 }

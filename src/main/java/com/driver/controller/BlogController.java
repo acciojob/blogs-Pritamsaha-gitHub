@@ -17,14 +17,15 @@ public class BlogController {
     BlogService blogService;
     @GetMapping
     public ResponseEntity<Integer> getAllBlogs() {
-        int countOfBlogs = blogService.showBlogs().size();
+        List<Blog>listOfblogs=blogService.showBlogs();
+        int countOfBlogs = listOfblogs.size();
         return new ResponseEntity<>(countOfBlogs, HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity createBlog(@RequestParam Integer userId ,
-                                           @RequestParam String title,
-                                           @RequestParam String content) {
+                                     @RequestParam String title,
+                                     @RequestParam String content) {
         blogService.createAndReturnBlog(userId, title, content);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -32,7 +33,7 @@ public class BlogController {
     @PutMapping("/{blogId}/add-image")
     public ResponseEntity<String> addImage(@PathVariable int blogId, @RequestParam String description, @RequestParam String dimensions) {
         blogService.addImage(blogId,description,dimensions);
-            return new ResponseEntity<>("Added image successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Added image successfully", HttpStatus.OK);
     }
 
     @DeleteMapping("/{blogId}")
