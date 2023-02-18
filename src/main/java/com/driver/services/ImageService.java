@@ -68,7 +68,8 @@ public class ImageService {
         }
         ys = num;
 
-        int ans = (int) (Math.floor((new Double(xs))/(new Double(xi))) * Math.floor((new Double(ys))/(new Double(yi))));
+        //int ans = (int) (Math.floor((double) (xs)/(double) (xi)) * Math.floor((double)(ys) /(double)(yi)));
+        int ans =0;
         return ans;
     }
 }
