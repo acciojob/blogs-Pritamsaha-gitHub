@@ -12,6 +12,5 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
-    @Query(value = "select * from user where username=:username",nativeQuery = true)
-    User findByUsername(String username);
+
 }
