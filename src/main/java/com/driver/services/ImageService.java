@@ -16,7 +16,7 @@ public class ImageService {
     BlogRepository blogRepository;
 
     public Image createAndReturn(Blog blog, String description, String dimensions){
-        //create an image based on given parameters and add it to the imageList of given blog
+
         Image image=new Image();
         image.setBlog(blog);
         image.setDescription(description);
@@ -33,13 +33,16 @@ public class ImageService {
     }
 
     public Image findById(int id) {
-
+        Blog blog=imageRepository2.findById(id).get().getBlog();
+        List<Image>imageList=blog.getImageList();
+        imageList.remove(imageRepository2.findById(id).get());
+        blog.setImageList(imageList);
+        blogRepository.save(blog);
         return imageRepository2.findById(id).get();
     }
 
     public int countImagesInScreen(Image image, String screenDimensions) {
-        //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
-        //In case the image is null, return 0
+
         String dimensions = image.getDimensions();
         int xi = 0;
         int yi = 0;

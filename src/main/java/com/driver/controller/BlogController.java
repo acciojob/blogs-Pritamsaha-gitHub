@@ -13,8 +13,8 @@ import java.util.List;
 @RequestMapping("/blogs")
 public class BlogController {
 
-    //@Autowired
-    BlogService blogService=new BlogService();
+    @Autowired
+    BlogService blogService;
     @GetMapping
     public ResponseEntity<Integer> getAllBlogs() {
         int countOfBlogs = blogService.showBlogs().size();
