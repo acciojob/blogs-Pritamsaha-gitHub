@@ -17,7 +17,18 @@ public class UserService {
     BlogService blogService3;
 
     public void createUser(User user){
-        userRepository3.save(user);
+        User user1=new User();
+        user1.setUsername(user.getUsername());
+        user1.setPassword(user.getPassword());
+        user1.setFirstName("test");
+        user1.setLastName("test");
+        if(user.getFirstName()!=null){
+            user1.setFirstName(user.getFirstName());
+        }
+        if(user.getLastName()!=null){
+            user1.setLastName(user.getLastName());
+        }
+        userRepository3.save(user1);
     }
 
     public void deleteUser(int userId){
@@ -26,8 +37,9 @@ public class UserService {
 
     public void updateUser(User user)
     {
-        userRepository3.save(user);
-
+        User user1=userRepository3.findById(user.getId()).get();
+        user1.setPassword(user.getPassword());
+        userRepository3.save(user1);
     }
 
     public User findUserByUsername(String username)

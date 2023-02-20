@@ -11,4 +11,6 @@ import java.util.List;
 
 @Repository
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
+    @Query(value = "select * from Blog",nativeQuery = true)
+    List<Blog> blogList();
 }
